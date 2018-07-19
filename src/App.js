@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   add(event) {
-    if(event!=undefined){
+    if(event!==undefined){
       if (event.keyCode === 13) {
         this.todosAPI.add(new Todo(this.refs.newItem.value));
         const todos = this.deepCopy(
@@ -34,7 +34,7 @@ class App extends Component {
         this.refs.newItem.value = '';
         console.log(todos);
       }
-    }else if(event==undefined){
+    }else{
       this.todosAPI.add(new Todo(this.refs.newItem.value));
       const todos = this.deepCopy(
         this.todosAPI.filerByStatus(this.state.statusOfList)

@@ -8,31 +8,16 @@ import todosAPI from '../API/TodoResourseAPI'
 // }
 // export const decrement = (index) => { return { type: types.DECREMENT, index } }
 // export const multiplication = (index, num) => { return { type: types.MULTIPLICATION, index, num } }
-// export const add = (event,value,statusOfList) => {
-//     if (event !== undefined) {
-//         if (event.keyCode === 13) {
-//             todosAPI.add(new Todo(value));
-//             const todos = deepCopy(
-//                 todosAPI.filerByStatus(statusOfList)
-//             );
-//             return{ todos };
-//         }
-//     } else {
-//         todosAPI.add(new Todo(value));
-//         const todos = this.deepCopy(
-//             this.todosAPI.filerByStatus(statusOfList)
-//         );
-//         return{ todos };
-//     }
-    
-// }
-
-export const showFilterList = (statusOfList,todos) => { 
-    return { type:"SHOW_FILTER_LIST",statusOfList,todos } 
+export const add = (todos) => {
+    return {type:types.ADD_ITEM,todos}
 }
-// export const deepCopy = (array) => {
-//     return JSON.parse(JSON.stringify(array));
-// }
+
+export const showFilterList = (todos) => { 
+    return { type:types.SHOW_FILTER_LIST,todos } 
+}
+export const deepCopy = (array) => {
+    return JSON.parse(JSON.stringify(array));
+}
 // export const toggleActive=(todos)=>{
 //     return {type:"CHANGE_ACTIVE",todos}
 // }

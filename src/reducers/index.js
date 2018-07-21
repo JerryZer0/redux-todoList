@@ -1,14 +1,23 @@
 import * as types from '../constants/ActionTypes'
 import Todo from '../model/Todo';
 import todosAPI from '../API/TodoResourseAPI'
+import {deepCopy } from '../actions';
 
-export default (state ={todoList:[{content:"434",status:"active",viewId:2}],statusOfList: "active"} , action) => {
+export default (state ={todoList:[],statusOfList: "active"} , action) => {
     switch (action.type) {
 
-        case "SHOW_FILTER_LIST":{
-            const todo = action.todos
-            todosAPI.add(todo)
-            return todosAPI.todos
+        case types.SHOW_FILTER_LIST:{
+            //console.log(action.todos)
+            //const todo = action.todos
+            const newState=deepCopy(state)
+            newState.todoList = action.todos
+            return newState
+        }
+
+        case types.ADD_ITEM:{
+            const newState = deepCopy(state)
+            newState.todoList = action.todos
+            return newState
         }
         // case "CHANGE_ACTIVE":{
         //     const newTodo = action.todos

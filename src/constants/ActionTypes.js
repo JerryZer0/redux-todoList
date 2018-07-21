@@ -1,5 +1,5 @@
-export const ACTIVE = "active"
-export const COMPLETED = "completed"
+export const ADD_ITEM = "ADD_ITEM"
+export const SHOW_FILTER_LIST = "SHOW_FILTER_LIST"
 export const ALL = "all"
 
 export const READ = "read"

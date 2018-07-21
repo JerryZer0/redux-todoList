@@ -25,15 +25,11 @@ class App extends Component {
   }
 
   add(event) {
-
-    //console.log(event.button)
     if (event.keyCode === 13 || event.button === 0) {
-      //console.log(event)
-      this.todosAPI.add(new Todo(this.refs.newItem.value));
-      const todos = this.deepCopy(
-        this.todosAPI.filerByStatus(this.state.statusOfList)
-      );
-      this.setState({ todos });
+      const todo = new Todo(this.refs.newItem.value)
+      const statusOfList = this.props.statusOfList
+      // console.log(statusOfList)
+      this.props.onAdd(todo,statusOfList)
       this.refs.newItem.value = '';
     }
 
@@ -51,8 +47,6 @@ class App extends Component {
     //console.log(this.state.todos);
     const statusOfList = event.target.attributes.getNamedItem('data-filter')
       .value;
-    // const todos = this.deepCopy(this.todosAPI.filerByStatus(statusOfList));
-    // this.setState({ todos, statusOfList });
     this.props.onShowFilterList(statusOfList)
 
   }
@@ -94,7 +88,7 @@ class App extends Component {
           <ol>
             {(() => {
               const {todoList} = this.props
-              console.log(todoList)
+              //console.log(todoList)
               return todoList.map(item => (
                 <TodoItem
                   item={item}
@@ -109,7 +103,7 @@ class App extends Component {
           </ol>
         </div>
         <div>
-          {/* <ul className="filters">
+          <ul className="filters">
             <li>
               <a
                 href="#all"
@@ -146,7 +140,7 @@ class App extends Component {
                 Complete
               </a>
             </li>
-          </ul> */}
+          </ul>
         </div>
       </div>
     );

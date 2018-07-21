@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 //import Counters from './components/CounterGroup'
 import './App.css';
 import Todo from './model/Todo';
-import TodoItem from './container/ItemContainer';
+import TodoItem from './components/TodoItem';
 import classNames from 'classnames';
 import todosAPI from './API/TodoResourseAPI';
-import ItemContainer from './container/ItemContainer'
+import Container from './container/ItemContainer'
 
 class App extends Component {
   constructor(props) {
@@ -39,16 +39,6 @@ class App extends Component {
 
   }
 
-  // add=(event)=>{
-  //   const addItem = this.props.add;
-  //   console.log(this.props.add)
-  //   const value = this.refs.newItem.value
-  //   const statusOfList = this.state.statusOfList
-  //   const todos =addItem(event,value,statusOfList)
-  //   this.setState(todos);
-  //   this.refs.newItem.value = ""
-  // }
-
   toggleActive(viewId) {
     this.todosAPI.toggleActive(viewId);
     const todos = this.deepCopy(
@@ -58,11 +48,13 @@ class App extends Component {
   }
 
   showFilterList(event) {
-    console.log(this.state.todos);
+    //console.log(this.state.todos);
     const statusOfList = event.target.attributes.getNamedItem('data-filter')
       .value;
-    const todos = this.deepCopy(this.todosAPI.filerByStatus(statusOfList));
-    this.setState({ todos, statusOfList });
+    // const todos = this.deepCopy(this.todosAPI.filerByStatus(statusOfList));
+    // this.setState({ todos, statusOfList });
+    this.props.onShowFilterList(statusOfList)
+
   }
 
   updateItemContent(viewId, content) {
@@ -101,7 +93,9 @@ class App extends Component {
         <div>
           <ol>
             {(() => {
-              return this.state.todos.map(item => (
+              const {todoList} = this.props
+              console.log(todoList)
+              return todoList.map(item => (
                 <TodoItem
                   item={item}
                   key={item.viewId}
@@ -114,15 +108,15 @@ class App extends Component {
             })()}
           </ol>
         </div>
-        {/* <div>
-          <ul className="filters">
+        <div>
+          {/* <ul className="filters">
             <li>
               <a
                 href="#all"
                 onClick={e => this.showFilterList(e)}
                 data-filter="all"
                 className={classNames({
-                  selected: this.state.statusOfList === Todo.ALL
+                  selected: this.props.statusOfList === Todo.ALL
                 })}
               >
                 ALL
@@ -152,8 +146,8 @@ class App extends Component {
                 Complete
               </a>
             </li>
-          </ul>
-        </div> */}
+          </ul> */}
+        </div>
       </div>
     );
   }

@@ -30,9 +30,16 @@ import todosAPI from '../API/TodoResourseAPI'
 export const showFilterList = (statusOfList,todos) => { 
     return { type:"SHOW_FILTER_LIST",statusOfList,todos } 
 }
-export const deepCopy = (array) => {
-    return JSON.parse(JSON.stringify(array));
-}
-export const toggleActive=(viewId,todos)=>{
-    return {type:"CHANGE_ACTIVE",viewId,todos}
-}
+// export const deepCopy = (array) => {
+//     return JSON.parse(JSON.stringify(array));
+// }
+// export const toggleActive=(todos)=>{
+//     return {type:"CHANGE_ACTIVE",todos}
+// }
+// export const changeToEditable=(todos)=>{
+//     return{type:"ChANGE_TO_EDITABLE",todos}
+// }
+
+// export const updateItem=(todos)=>{
+//     return{type:"UPDATE_ITEM",todos}
+// }

@@ -25,6 +25,10 @@ export default (state ={todoList:[],statusOfList: "active"} , action) => {
             newState.todoList = action.todos
             return newState
         }
+        case types.TOGGLE_ACTIVE:{
+            newState.todoList = action.todos
+            return newState
+        }
         default:
             return state
     }

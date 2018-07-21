@@ -19,9 +19,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      todos: this.deepCopy(this.todosAPI.filerByStatus(Todo.ALL))
-    });
+    // this.setState({
+    //   todos: this.deepCopy(this.todosAPI.filerByStatus(Todo.ALL))
+    // });
+    this.props.onComponentDidMount()
   }
 
   add(event) {
@@ -36,11 +37,13 @@ class App extends Component {
   }
 
   toggleActive(viewId) {
-    this.todosAPI.toggleActive(viewId);
-    const todos = this.deepCopy(
-      this.todosAPI.filerByStatus(this.state.statusOfList)
-    );
-    this.setState({ todos });
+    // this.todosAPI.toggleActive(viewId);
+    // const todos = this.deepCopy(
+    //   this.todosAPI.filerByStatus(this.state.statusOfList)
+    // );
+    // this.setState({ todos });
+    const statusOfList = this.props.statusOfList
+    this.props.onToggleActive(viewId,statusOfList)
   }
 
   showFilterList(event) {
@@ -61,9 +64,9 @@ class App extends Component {
     // this.setState({ todos, statusOfList: this.state.statusOfList });
   }
 
-  deepCopy(array) {
-    return JSON.parse(JSON.stringify(array));
-  }
+  // deepCopy(array) {
+  //   return JSON.parse(JSON.stringify(array));
+  // }
 
   render() {
 

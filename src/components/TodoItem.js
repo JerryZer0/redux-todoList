@@ -5,30 +5,34 @@ import '../App.css';
 class TodoItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      status: 'read'
-    };
+    // this.state = {
+    //   status: 'read'
+    // };
   }
 
-  changeToEditable() {
-    this.setState({ status: 'write' });
-  }
+  // changeToEditable() {
+  //   this.setState({ status: 'write' });
+  // }
 
-  updateItem(e, viewId, content) {
-    if (e.keyCode === 13) {
-      this.props.updateItemContent(viewId, content);
-      // console.log(this.props.item);
-      this.setState({ status: 'read' });
-    }
-  }
+  // updateItem(e, viewId, content) {
+  //   if (e.keyCode === 13) {
+  //     this.props.updateItemContent(viewId, content);
+  //     this.setState({ status: 'read' });
+  //   }
+  // }
 
   toggleActive(viewId) {
-    this.setState({ status: 'read' });
+    //this.setState({ status: 'read' });
     this.props.toggleActiveHandler(viewId);
   }
 
   render() {
-    const item = this.props.item;
+    const {item} = this.props
+    const {editstatus} = this.props
+   
+    //console.log("status="+status)
+     //console.log("item="+item.props.editstatus)
+   
     return (
       <li className={item.status}>
         {
@@ -40,7 +44,7 @@ class TodoItem extends Component {
           />
         }
         <span onDoubleClick={e => this.changeToEditable(e)}>
-          {this.state.status === 'read' ? (
+          {editstatus === 'read' ? (
             item.content
           ) : (
             <input

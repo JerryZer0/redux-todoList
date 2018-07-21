@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 //import Counters from './components/CounterGroup'
 import './App.css';
 import Todo from './model/Todo';
-import TodoItem from './components/TodoItem';
+import TodoItem from './container/ItemContainer';
 import classNames from 'classnames';
 import todosAPI from './API/TodoResourseAPI';
+import ItemContainer from './container/ItemContainer'
 
 class App extends Component {
   constructor(props) {
@@ -24,27 +25,29 @@ class App extends Component {
   }
 
   add(event) {
-    if(event!==undefined){
-      if (event.keyCode === 13) {
-        this.todosAPI.add(new Todo(this.refs.newItem.value));
-        const todos = this.deepCopy(
-          this.todosAPI.filerByStatus(this.state.statusOfList)
-        );
-        this.setState({ todos });
-        this.refs.newItem.value = '';
-        console.log(todos);
-      }
-    }else{
+
+    //console.log(event.button)
+    if (event.keyCode === 13 || event.button === 0) {
+      //console.log(event)
       this.todosAPI.add(new Todo(this.refs.newItem.value));
       const todos = this.deepCopy(
         this.todosAPI.filerByStatus(this.state.statusOfList)
       );
       this.setState({ todos });
       this.refs.newItem.value = '';
-      console.log(todos);
     }
-    
+
   }
+
+  // add=(event)=>{
+  //   const addItem = this.props.add;
+  //   console.log(this.props.add)
+  //   const value = this.refs.newItem.value
+  //   const statusOfList = this.state.statusOfList
+  //   const todos =addItem(event,value,statusOfList)
+  //   this.setState(todos);
+  //   this.refs.newItem.value = ""
+  // }
 
   toggleActive(viewId) {
     this.todosAPI.toggleActive(viewId);
@@ -75,6 +78,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="container">
         <div>
@@ -90,7 +94,7 @@ class App extends Component {
             id="todo-creator"
             ref="newItem"
           />
-          <div className="button" onClick={e => this.add()}>
+          <div className="button" onClick={e => this.add(e)}>
             Add
           </div>
         </div>
@@ -110,7 +114,7 @@ class App extends Component {
             })()}
           </ol>
         </div>
-        <div>
+        {/* <div>
           <ul className="filters">
             <li>
               <a
@@ -149,7 +153,7 @@ class App extends Component {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     );
   }

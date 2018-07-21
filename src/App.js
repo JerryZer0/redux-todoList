@@ -4,18 +4,18 @@ import './App.css';
 import Todo from './model/Todo';
 import TodoItem from './components/TodoItem';
 import classNames from 'classnames';
-import todosAPI from './API/TodoResourseAPI';
-import Container from './container/ItemContainer'
+// import todosAPI from './API/TodoResourseAPI';
+// import Container from './container/ItemContainer'
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.todosAPI = todosAPI;
+    //this.todosAPI = todosAPI;
 
-    this.state = {
-      todos: [],
-      statusOfList: Todo.ALL
-    };
+    // this.state = {
+    //   todos: [],
+    //   statusOfList: Todo.ALL
+    // };
   }
 
   componentDidMount() {
@@ -127,7 +127,7 @@ class App extends Component {
                 onClick={e => this.showFilterList(e)}
                 data-filter="active"
                 className={classNames({
-                  selected: this.state.statusOfList === Todo.ACTIVE
+                  selected: this.props.statusOfList === Todo.ACTIVE
                 })}
               >
                 Active
@@ -139,7 +139,7 @@ class App extends Component {
                 onClick={e => this.showFilterList(e)}
                 data-filter="completed"
                 className={classNames({
-                  selected: this.state.statusOfList === Todo.COMPLETED
+                  selected: this.props.statusOfList === Todo.COMPLETED
                 })}
               >
                 Complete

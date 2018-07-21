@@ -3,7 +3,7 @@ import Todo from '../model/Todo';
 import todosAPI from '../API/TodoResourseAPI'
 import {deepCopy } from '../actions';
 
-export default (state ={todoList:[],statusOfList: "active"} , action) => {
+export default (state ={todoList:[],statusOfList: "all"} , action) => {
     const newState=deepCopy(state)
     switch (action.type) {
 

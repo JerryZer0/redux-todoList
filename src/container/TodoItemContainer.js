@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Iteam from '../components/TodoItem';
 import App from '../App'
 import todosAPI from '../API/TodoResourseAPI'
-import { showFilterList, deepCopy, add } from '../actions';
+import { showFilterList, deepCopy, add ,updateItemContent } from '../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,10 +14,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
 
     return {
-        onAdd: (todo, statusOfList) => {
-            console.log(statusOfList)
-
-            todosAPI.add(todo);
+        onAdd: (todo,statusOfList) => {
+            todosAPI.add(todo)
             //const todos = todoAPI.filerByStatus(statusOfList);
             const todos = deepCopy(
                 todosAPI.filerByStatus(statusOfList)
@@ -25,10 +23,15 @@ const mapDispatchToProps = dispatch => {
             dispatch(add(todos))
         },
         onShowFilterList: statusOfList => {
-            //console.log(statusOfList)
-            const todos = deepCopy(todosAPI.filerByStatus(statusOfList));
+            console.log(statusOfList)
+            const todos = deepCopy(todosAPI.filerByStatus(statusOfList))
             //console.log(todos)
             dispatch(showFilterList(todos))
+        },
+        onUpdateItemContent:(viewId,content,statusOfList)=>{
+            todosAPI.updateItemContent(viewId, content)
+            const todos = deepCopy(todosAPI.filerByStatus(statusOfList))
+            dispatch(updateItemContent(todos))
         }
 
     }

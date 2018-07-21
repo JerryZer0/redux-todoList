@@ -27,8 +27,8 @@ class App extends Component {
   add(event) {
     if (event.keyCode === 13 || event.button === 0) {
       const todo = new Todo(this.refs.newItem.value)
-      const statusOfList = this.props.statusOfList
       // console.log(statusOfList)
+      const statusOfList = this.props.statusOfList
       this.props.onAdd(todo,statusOfList)
       this.refs.newItem.value = '';
     }
@@ -52,11 +52,13 @@ class App extends Component {
   }
 
   updateItemContent(viewId, content) {
-    this.todosAPI.updateItemContent(viewId, content);
-    const todos = this.deepCopy(
-      this.todosAPI.filerByStatus(this.state.statusOfList)
-    );
-    this.setState({ todos, statusOfList: this.state.statusOfList });
+    const statusOfList = this.props.statusOfList
+    this.props.onUpdateItemContent(viewId, content,statusOfList)
+    // this.todosAPI.updateItemContent(viewId, content);
+    // const todos = this.deepCopy(
+    //   this.todosAPI.filerByStatus(this.state.statusOfList)
+    // );
+    // this.setState({ todos, statusOfList: this.state.statusOfList });
   }
 
   deepCopy(array) {

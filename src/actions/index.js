@@ -15,16 +15,10 @@ export const add = (todos) => {
 export const showFilterList = (todos) => { 
     return { type:types.SHOW_FILTER_LIST,todos } 
 }
+
+export const updateItemContent=(todos)=>{
+    return {type:types.UPDATE_ITEM_CONTENT,todos }
+}
 export const deepCopy = (array) => {
     return JSON.parse(JSON.stringify(array));
 }
-// export const toggleActive=(todos)=>{
-//     return {type:"CHANGE_ACTIVE",todos}
-// }
-// export const changeToEditable=(todos)=>{
-//     return{type:"ChANGE_TO_EDITABLE",todos}
-// }
-
-// export const updateItem=(todos)=>{
-//     return{type:"UPDATE_ITEM",todos}
-// }
